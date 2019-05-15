@@ -4,8 +4,10 @@
   "description": "## Excuses Description",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd ./client  && npm start \" ",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "postinstall": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -19,8 +21,10 @@
   },
   "homepage": "https://github.com/sekoyahicks/excuses_excuses#readme",
   "dependencies": {
+    "concurrently": "^4.1.0",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "mongoose": "^5.5.8"
-  }
+  },
+  "devDependencies": {}
 }
