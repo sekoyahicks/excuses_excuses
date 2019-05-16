@@ -1,7 +1,9 @@
+const TodoItems = require("../models/Todo")
+
 let todoController = {
     index: async (req, res) => {
       try {
-        const todoItems = await todoItems.find({});
+        const todoItems = await TodoItems.find({});
         res.json(todoItems);
       } catch (err) {
         console.log(err);
@@ -10,7 +12,7 @@ let todoController = {
     show: async (req, res) => {
       try {
         const todoItemId = req.params.id;
-        const todoItem = await todoItem.findById(todoItemId);
+        const todoItem = await TodoItems.findById(todoItemId);
         res.json(todoItem);
       } catch (err) {
         console.log(err);
@@ -20,8 +22,7 @@ let todoController = {
     create: async (req, res) => {
       try {
         const newTodoItem = req.body;
-        const savedTodoItem
-         = await todoController.create(newTodoItem);
+        const savedTodoItem = await TodoItems.create(newTodoItem);
         res.json(savedTodoItem
             );
       } catch (err) {
@@ -34,7 +35,7 @@ let todoController = {
         const todoItemId = req.params.id;
         const updatedTodoItem = req.body;
         const savedTodoItem
-         = await todoItemId.findbyIdAndUpdate(
+         = await TodoItems.findbyIdAndUpdate(
           todoItemId,
           updatedTodoItem,
           { new: true }
@@ -49,7 +50,7 @@ let todoController = {
     delete: async (req, res) => {
       try {
         const todoItemId = req.params.id;
-        await todoItemId.findByIdAndRemove(todoItemId);
+        await TodoItems.findByIdAndRemove(todoItemId);
         res.json({
           msg: "Succssfully Deleted"
         });
@@ -60,3 +61,4 @@ let todoController = {
     }
   };
   
+  module.exports = todoController

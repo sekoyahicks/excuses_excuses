@@ -1,31 +1,32 @@
 const mongoose = require('../db/connection.js')
-const Schema = mogoose.Schema
+const Schema = mongoose.Schema
 
 const ExcusesList = new Schema ({
     description: String
 })
 
-function getAllExcuses() {
-    return ExcusesCollection.find()
-}
+//We don't need this anymore because we are exporting the ExcusesList directly
+// function getAllExcuses() {
+//     return ExcusesCollection.find()
+// }
 
-function createNewExcuse(excuses) {
-    return ExcusesCollection.create(excuses)
-}
+// function createNewExcuse(excuses) {
+//     return ExcusesCollection.create(excuses)
+// }
 
-function updateExcuse(excusesId, excuses) {
-    return TodoCollection.findByIdAndUpdate(excusesId, excuses)
-}
+// function updateExcuse(excusesId, excuses) {
+//     return TodoCollection.findByIdAndUpdate(excusesId, excuses)
+// }
 
-function deleteExcuse(excusesId) {
-    return ExcusesCollection.findByIdAndDelete(excusesId)
-}
+// function deleteExcuse(excusesId) {
+//     return ExcusesCollection.findByIdAndDelete(excusesId)
+// }
 
-module.exports = {
-    getAllExcuses,
-    createNewExcuse,
-    updateExcuse,
-    deleteExcuse
-}
+// // module.exports = {
+// //     getAllExcuses,
+// //     createNewExcuse,
+// //     updateExcuse,
+// //     deleteExcuse
+// // }
 
 module.exports = mongoose.model('ExcusesList', ExcusesList)

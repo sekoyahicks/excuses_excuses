@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
-const express = require('express')
 const router = express.Router()
-
-const todoList = require('../controllers/Controller')
+const excusesRoute = require('./routes/excusesRoute')
+const todoRoute = require('./routes/todoRoute')
 app.use(express.json());
-app.get('/', (req,res) => {
-    res.send('Hello world!')
-})
+
+app.use(express.static(`${__dirname}/client/build`));
+app.use('/excuses', excusesRoute)
+app.use('/todo', todoRoute)
+app.get('/*', (req,res) => {
+    res.sendFile(`${__dirname}/client/build/index.html`)
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

@@ -1,7 +1,9 @@
+let Excuses = require('../models/Excuses')
+
 let excusesController = {
   index: async (req, res) => {
     try {
-      const excuses = await excuses.find({});
+      const excuses = await Excuses.find({});
       res.json(excuses);
     } catch (err) {
       console.log(err);
@@ -10,7 +12,7 @@ let excusesController = {
   show: async (req, res) => {
     try {
       const excusesId = req.params.id;
-      const excuses = await excuses.findById(excusesId);
+      const excuses = await Excuses.findById(excusesId);
       res.json(excuses);
     } catch (err) {
       console.log(err);
@@ -20,7 +22,7 @@ let excusesController = {
   create: async (req, res) => {
     try {
       const newExcuse = req.body;
-      const savedExcuse = await excusesController.create(newExcuse);
+      const savedExcuse = await Excuses.create(newExcuse);
       res.json(savedExcuse);
     } catch (err) {
       console.log(err);
@@ -31,7 +33,7 @@ let excusesController = {
     try {
       const excuseId = req.params.id;
       const updatedExcuse = req.body;
-      const savedExcuse = await excuseId.findbyIdAndUpdate(
+      const savedExcuse = await Excuses.findbyIdAndUpdate(
         excuseId,
         updatedExcuse,
         { new: true }
@@ -45,7 +47,7 @@ let excusesController = {
   delete: async (req, res) => {
     try {
       const excuseId = req.params.id;
-      await excuseId.findByIdAndRemove(excuseId);
+      await Excuses.findByIdAndRemove(excuseId);
       res.json({
         msg: "Succssfully Deleted"
       });
@@ -55,3 +57,5 @@ let excusesController = {
     }
   }
 };
+
+module.exports = excusesController;
