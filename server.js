@@ -6,7 +6,7 @@ const todoRoute = require('./routes/todoRoute')
 app.use(express.json());
 
 app.use(express.static(`${__dirname}/client/build`));
-app.use('/excuses', excusesRoute)
+app.use('/xcuses', excusesRoute)
 app.use('/todo', todoRoute)
 app.get('/*', (req,res) => {
     res.sendFile(`${__dirname}/client/build/index.html`)

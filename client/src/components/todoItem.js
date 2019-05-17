@@ -12,7 +12,8 @@ class todoItem extends Component {
   }
 
   componentDidMount = () => {
-    axios.get('/component/todoItem.js').then(res => {
+    axios.get('/todo').then(res => {
+        console.log(res.data)
         this.setState({todoItem: res.data})
     })
   }
@@ -32,7 +33,7 @@ class todoItem extends Component {
   createTodoItem = (e) => {
     e.preventDefault()
     axios
-        .post('/component/todoItem.js', {
+        .post('/todo', {
             name: this.state.newTodoItem.name,
             description: this.state.newTodoItem.description
         })
@@ -62,7 +63,7 @@ class todoItem extends Component {
                         <Link
                             to={`/${todoItem._id}`}
                         >
-                            {todoItem.name}
+                            {todoItem.description}
                         </Link>
                     </div>
                 )
