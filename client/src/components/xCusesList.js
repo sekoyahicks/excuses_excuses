@@ -62,6 +62,7 @@ class xCusesList extends Component {
   render() {
     return (
       <div>
+        test
         <h1>xCuses</h1>
         {this.state.xCusesList.map(xCusesList => {
           return (
@@ -96,7 +97,7 @@ class xCusesList extends Component {
             </div>
             <button>XCusesList</button>
           </form>
-         ) : null}
+         {/* ) : null} */}
       </div>
     );
   }

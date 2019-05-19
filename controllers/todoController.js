@@ -35,7 +35,7 @@ let todoController = {
         const todoItemId = req.params.id;
         const updatedTodoItem = req.body;
         const savedTodoItem
-         = await TodoItems.findbyIdAndUpdate(
+         = await TodoItems.findByIdAndUpdate(
           todoItemId,
           updatedTodoItem,
           { new: true }

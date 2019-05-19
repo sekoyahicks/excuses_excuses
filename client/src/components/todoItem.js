@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 class todoItem extends Component {
   state = {
-    todoItem: {}
+    todoItem: {},
   };
 
   componentDidMount = () => {
@@ -15,6 +15,18 @@ class todoItem extends Component {
       this.setState({ todoItem: res.data });
     });
   };
+
+  updateTodoItem = () => {
+    axios.patch(`/todo/${this.props.match.params.id}`, this.state.todoItem).then(res => {
+          this.setState({todoItem: res.data, isEditFormDisplayed: false})
+      })
+}
+
+
+createXcuse = () => {
+  axios.post('/xcuses', {description: this.state.xcuse})
+}
+
 
   // toggletodoList = () => {
   //   this.setState((state, props) => {
@@ -49,11 +61,36 @@ class todoItem extends Component {
   //     });
   // };
 
+  onXcuseChange = (event) => {
+    let xcuse = event.target.value
+    this.setState({xcuse: xcuse})
+  }
+
+  handleChange = (event) => {
+    let todoItemClone = this.state.todoItem
+    const value = event.target.value
+
+    todoItemClone.description = value
+    this.setState({todoItem: todoItemClone})
+  }
+
   render() {
     return (
       <div>
-        <h1>todoItem</h1>
-        <div>{this.state.todoItem.description}</div>
+        <h1>To-Do Task</h1>
+        <div>{this.state.todoItem.description}
+
+            <div key={todoItem._id}>
+          <form>
+            <textarea name="description" onChange={this.handleChange} value={this.state.todoItem.description}></textarea>
+            </form>
+              <Link to={`/${todoItem._id}`}>{todoItem.description}</Link>
+              <button onClick={() => this.updateTodoItem(todoItem._id)}>Update</button>
+
+              <textarea name="xcuse" onChange={this.onXcuseChange}>{this.state.xcuse}</textarea>
+              <Link to="/xcuses"><button onClick={this.createXcuse}>xCuse</button></Link>
+            </div>
+          </div>
         {/* {this.state.todoList.map(todoList => {
           return (
             <div key={todoList._id}>
