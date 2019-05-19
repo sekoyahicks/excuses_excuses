@@ -13,7 +13,7 @@ class xCusesItems extends Component {
 
   componentDidMount = () => {
     axios.get("/xcuses").then(res => {
-        console.log(res.data)
+      console.log(res.data);
       this.setState({ xCusesItems: res.data });
     });
   };

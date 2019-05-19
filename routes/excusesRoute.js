@@ -9,5 +9,4 @@ router.get('/:id', excuseController.show)
 router.patch('/:id', excuseController.update)
 router.delete('/:id', excuseController.delete)
 
-
 module.exports = router;
