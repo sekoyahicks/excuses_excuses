@@ -19,7 +19,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={todoList}/>
-            <Route path="/todo" component={todoItem}/>
+            <Route path="/:id" component={todoItem}/>
             <Route exact path="/xcuses" component={xCusesList}/>
             <Route path="/xcuses" component={xCusesItems}/>
           </Switch>

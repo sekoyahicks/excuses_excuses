@@ -2,93 +2,104 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+
 class todoList extends Component {
   state = {
-    todoList: [],
-    newTodoList: {
+    todoItem: [],
+    newTodoItem: {
       description: ""
     },
-    istoDoDisplayed: false
+    // istoDoDisplayed: false
   };
 
   componentDidMount = () => {
     axios.get("/todo").then(res => {
       console.log(res.data);
-      this.setState({ todoList: res.data });
+      this.setState({ todoItem: res.data });
     });
   };
 
-  toggletodoList = () => {
-    this.setState((state, props) => {
-      return { isTodoListDisplayed: !state.isTodoListDisplayed };
-    });
-  };
+  // toggleTodoItemForm = () => {
+  //   this.setState((state, props) => {
+  //     return { isTodoItemDisplayed: !state.isTodoItemDisplayed };
+  //   });
+  // };
 
-  //   handleChange = (e) => {
-  //     const cloneNewCreature = {...this.state.newCreature}
-  //     cloneNewCreature[e.target.name] = e.target.value
-  //     this.setState({newCreature: cloneNewCreature})
-  //   }
+    handleChange = (e) => {
+      const cloneNewTodoItem = {...this.state.newTodoItem}
+      cloneNewTodoItem[e.target.name] = e.target.value
+      this.setState({newTodoItem: cloneNewTodoItem})
+    }
 
-  createTodoList = e => {
+    createTodoItem = e => {
     e.preventDefault();
     axios
       .post("/todo", {
-        name: this.state.newTodoList.name,
-        description: this.state.newTodoList.description
+        name: this.state.newTodoItem.name,
+        description: this.state.newTodoItem.description
       })
       .then(res => {
-        const todoItemList = [...this.state.todoList];
+        const todoItemList = [...this.state.todoItem];
         todoItemList.unshift(res.data);
-        this.setTodoList({
-          newTodoList: {
-            name: "",
+        this.setState({
+          newTodoItem: {
+            // name: "",
             description: ""
           },
-          isTodoListDisplayed: false,
-          todoList: todoList
+          // isTodoItemDisplayed: false,
+          todoItem: todoItemList
         });
       });
   };
+ 
+  deleteTodoItem = todoItemId => {
+    axios.delete(`/todo/${todoItemId}`).then(res => {
+    const  todoItemClone = this.state.todoItem.filter(item => item._id !== todoItemId)
 
-  render() {
+        this.setState({todoItem: todoItemClone})
+    })
+};
+  
+  render() { 
     return (
       <div>
-        <h1>todoList</h1>
-        {this.state.todoList.map(todoList => {
+        <h1>To-do List</h1>
+        {this.state.todoItem.map(todoItem => {
           return (
-            <div key={todoList._id}>
-              <Link to={`/${todoList._id}`}>{todoList.description}</Link>
+            <div key={todoItem._id}>
+
+              <Link to={`/${todoItem._id}`}>{todoItem.description}</Link>
+              <button onClick={() => this.deleteTodoItem(todoItem._id)}>X</button>
             </div>
           );
         })}
-        <button onClick={this.toggleTodoListForm}>+ New TodoList</button>
-        {this.state.isTodoListDisplayed ? (
-          <form onSubmit={this.todoList}>
-            <div>
+        {/* <button onClick={this.toggleTodoItemForm}>+ New TodoItem</button> */}
+        {/* {this.state.isTodoItemDisplayed ? ( */}
+          <form onSubmit={this.createTodoItem}>
+            {/* <div>
               <label htmlFor="name">Name</label>
               <input
                 id="name"
                 type="text"
-                name="name"
+                // name="name"
                 onChange={this.handleChange}
-                value={this.state.newTodoList.name}
+                defaultValue={this.state.newTodoItem.value}
               />
-            </div>
+            </div> */}
             <div>
-              <label htmlFor="description">Description</label>
+              <label htmlFor="description">New To-do Task</label>
               <textarea
                 id="description"
                 type="text"
                 name="description"
                 onChange={this.handleChange}
-                value={this.state.newTodoList.description}
+                value={this.state.newTodoItem.description}
               />
             </div>
-            <button>TodoList</button>
+            <button>Add Task</button>
           </form>
-        ) : null}
-      </div>
+        {/* ) : null} */}
+    </div>
     );
   }
 }

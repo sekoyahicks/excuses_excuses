@@ -24,46 +24,55 @@ class xCusesList extends Component {
     });
   };
 
-  //   handleChange = (e) => {
-  //     const cloneNewCreature = {...this.state.newCreature}
-  //     cloneNewCreature[e.target.name] = e.target.value
-  //     this.setState({newCreature: cloneNewCreature})
-  //   }
+    handleChange = (e) => {
+      const cloneNewXCusesList = {...this.state.newXCusesList}
+      cloneNewXCusesList[e.target.name] = e.target.value
+      this.setState({newXCuses: cloneNewXCusesList})
+    }
 
-  createTodoItem = e => {
+  updateTodoItem = e => {
     e.preventDefault();
     axios
-      .post("/xCuses", {
-        name: this.state.newXCusesList.name,
-        description: this.state.newXCusesList.description
+      .patch("/xCuses", {
+        name: this.state.updateXCusesList.name,
+        description: this.state.updateXCusesList.description
       })
       .then(res => {
         const xCusesList = [...this.state.xCusesList];
         xCusesList.unshift(res.data);
-        this.setXCusesList({
-          newXCusesList: {
-            name: "",
+        this.setState({
+          updateXCusesList: {
+            // name: "",
             description: ""
           },
-          isXCusesListDisplayed: false,
+          // isXCusesListDisplayed: false,
           xCusesList: xCusesList
         });
       });
   };
 
+  deleteTodoItem = xCusesListId => {
+    axios.delete(`/xcuses/${xCusesListId}`).then(res => {
+    const  xCusesListClone = this.state.xCusesList.filter(item => item._id !== xCusesListId)
+
+        this.setState({xCusesList: xCusesListClone})
+    })
+  };
+
   render() {
     return (
       <div>
-        <h1>xCusesList</h1>
+        <h1>xCuses</h1>
         {this.state.xCusesList.map(xCusesList => {
           return (
             <div key={xCusesList._id}>
               <Link to={`/${xCusesList._id}`}>{xCusesList.description}</Link>
+              <button>Xcuse</button>
             </div>
           );
         })}
-        <button onClick={this.toggleXCusesListForm}>+ New XCusesList</button>
-        {this.state.isXCusesListDisplayed ? (
+        {/* <button onClick={this.toggleXCusesListForm}>+ New XCusesList</button>
+        {this.state.isXCusesListDisplayed ? ( */}
           <form onSubmit={this.xCusesList}>
             <div>
               <label htmlFor="name">Name</label>
@@ -87,7 +96,7 @@ class xCusesList extends Component {
             </div>
             <button>XCusesList</button>
           </form>
-        ) : null}
+         ) : null}
       </div>
     );
   }

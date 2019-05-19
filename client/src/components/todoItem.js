@@ -1,81 +1,79 @@
+
+
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
 class todoItem extends Component {
   state = {
-    todoItem: [],
-    newTodoItem: {
-      description: ""
-    },
-    // istoDoDisplayed: false
+    todoItem: {}
   };
 
   componentDidMount = () => {
-    axios.get("/todo").then(res => {
+    axios.get(`/todo/${this.props.match.params.id}`).then(res => {
       console.log(res.data);
       this.setState({ todoItem: res.data });
     });
   };
 
-  // toggleTodoItemForm = () => {
+  // toggletodoList = () => {
   //   this.setState((state, props) => {
-  //     return { isTodoItemDisplayed: !state.isTodoItemDisplayed };
+  //     return { isTodoListDisplayed: !state.isTodoListDisplayed };
   //   });
   // };
 
-    handleChange = (e) => {
-      const cloneNewTodoItem = {...this.state.newTodoItem}
-      cloneNewTodoItem[e.target.name] = e.target.value
-      this.setState({newTodoItem: cloneNewTodoItem})
-    }
+  // //   handleChange = (e) => {
+  // //     const cloneNewCreature = {...this.state.newCreature}
+  // //     cloneNewCreature[e.target.name] = e.target.value
+  // //     this.setState({newCreature: cloneNewCreature})
+  // //   }
 
-    createTodoItem = e => {
-    e.preventDefault();
-    axios
-      .post("/todo", {
-        name: this.state.newTodoItem.name,
-        description: this.state.newTodoItem.description
-      })
-      .then(res => {
-        const todoItemList = [...this.state.todoItem];
-        todoItemList.unshift(res.data);
-        this.setState({
-          newTodoItem: {
-            // name: "",
-            description: ""
-          },
-          // isTodoItemDisplayed: false,
-          todoItem: todoItemList
-        });
-      });
-  };
-  // deleteTodoItem = e
+  // createTodoList = e => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("/todo", {
+  //       name: this.state.newTodoList.name,
+  //       description: this.state.newTodoList.description
+  //     })
+  //     .then(res => {
+  //       const todoItemList = [...this.state.todoList];
+  //       todoItemList.unshift(res.data);
+  //       this.setTodoList({
+  //         newTodoList: {
+  //           name: "",
+  //           description: ""
+  //         },
+  //         isTodoListDisplayed: false,
+  //         todoList: todoList
+  //       });
+  //     });
+  // };
+
   render() {
     return (
       <div>
-        <h1>To-do Item</h1>
-        {this.state.todoItem.map(todoItem => {
+        <h1>todoItem</h1>
+        <div>{this.state.todoItem.description}</div>
+        {/* {this.state.todoList.map(todoList => {
           return (
-            <div key={todoItem._id}>
-              <Link to={`/${todoItem._id}`}>{todoItem.description}</Link>
+            <div key={todoList._id}>
+              <Link to={`/${todoList._id}`}>{todoList.description}</Link>
             </div>
           );
         })}
-        {/* <button onClick={this.toggleTodoItemForm}>+ New TodoItem</button> */}
-        {/* {this.state.isTodoItemDisplayed ? ( */}
-          <form onSubmit={this.createTodoItem}>
-            {/* <div>
+        <button onClick={this.toggleTodoListForm}>+ New TodoList</button>
+        {this.state.isTodoListDisplayed ? (
+          <form onSubmit={this.todoList}>
+            <div>
               <label htmlFor="name">Name</label>
               <input
                 id="name"
                 type="text"
-                // name="name"
+                name="name"
                 onChange={this.handleChange}
-                defaultValue={this.state.newTodoItem.value}
+                value={this.state.newTodoList.name}
               />
-            </div> */}
+            </div>
             <div>
               <label htmlFor="description">Description</label>
               <textarea
@@ -83,15 +81,17 @@ class todoItem extends Component {
                 type="text"
                 name="description"
                 onChange={this.handleChange}
-                value={this.state.newTodoItem.description}
+                value={this.state.newTodoList.description}
               />
             </div>
-            <button>To-do Item</button>
+            <button>TodoList</button>
           </form>
-        {/* ) : null} */}
+        ) : null} */}
       </div>
     );
   }
 }
 
+
 export default todoItem;
+
