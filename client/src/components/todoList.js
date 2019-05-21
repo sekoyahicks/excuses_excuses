@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import images from '../images/clear-road.png';
 
 const TodoWrapper = styled.div`
     display: flex;
@@ -9,12 +10,32 @@ const TodoWrapper = styled.div`
     align-items: center;
     justify-content: space-evenly;
     height: 100vh;
-    background-color: lavender;
+    font-family: 'Indie Flower', cursive;
+    background-color: darkgreen;
+    background-image: url(${images});
+    background-size: cover;
+    color: white;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 
     h1 {
       font-size: 4em;
     }
 
+    a {
+      font-size: 2em;
+      color: white;
+    }
+
+    .bback{
+    font-size: 1.5em;
+    background: transparent;
+    border-radius: 35%;
+    outline: .5em;
+    }   
 `
 
 class todoList extends Component {
@@ -83,7 +104,7 @@ class todoList extends Component {
             <div key={todoItem._id}>
 
               <Link to={`/${todoItem._id}`}>{todoItem.description}</Link>
-              <button onClick={() => this.deleteTodoItem(todoItem._id)}>X</button>
+              <button className='bback'onClick={() => this.deleteTodoItem(todoItem._id)}>✅</button>
             </div>
           );
         })}

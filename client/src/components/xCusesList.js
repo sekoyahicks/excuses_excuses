@@ -2,14 +2,23 @@ import React, { Component } from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
 import styled from "styled-components";
+import images from '../images/blurred-road.png';
 
 const XcusesWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    font-family:'Indie Flower', cursive;
     height: 100vh;
-    background-color: lavender;
+    background-image: url(${images});
+    background-size: cover;
+    color: lightblue;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 
     h1 {
       font-size: 4em;
@@ -93,7 +102,7 @@ class xCusesList extends Component {
               <p>{xCusesList.description}</p>
               <div key={xCusesList._id}>
               {/* <Link to={`/${xCusesList._id}`}>{xCusesList.description}</Link> */}
-              <button onClick={() => this.deleteXCusesList(xCusesList._id)}>X</button>
+              <button onClick={() => this.deleteXCusesList(xCusesList._id)}>{'{X}'}</button>
               </div>
               <h2>Stop making excuses, and go be great!</h2>
             </div>

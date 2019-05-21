@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import images from '../images/clear-road.png';
 
 const TodoItemWrapper = styled.div`
     display: flex;
@@ -9,11 +10,25 @@ const TodoItemWrapper = styled.div`
     align-items: center;
     justify-content: space-evenly;
     height: 100vh;
-    background-color: lavender;
+    font-size: 4em;
+    background-image: url(${images});
+    background-size: cover;
+    color: lightblue;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 
     h1 {
       font-size: 4em;
     }
+
+    .button {
+      font-size: 4em;
+      color: lightblue;
+    }
+
 
 `
 
@@ -103,7 +118,7 @@ createXcuse = () => {
               </Link>
 
               <textarea name="xcuse" onChange={this.onXcuseChange}>{this.state.xcuse}</textarea>
-              <Link to="/xcuses"><button onClick={this.createXcuse}>xCuse</button></Link>
+              <Link to="/xcuses"><button onClick={this.createXcuse}>{'{X}'}cuse</button></Link>
             </div>
           </div>
         {/* {this.state.todoList.map(todoList => {
