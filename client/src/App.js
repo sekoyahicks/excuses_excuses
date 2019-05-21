@@ -11,12 +11,14 @@ import todoList from './components/todoList.js'
 import todoItem from './components/todoItem.js'
 import xCusesList from './components/xCusesList.js'
 import xCusesItems from './components/xCusesItems.js'
+import NavBar from './components/navBar.js'
 
 class App extends Component {
   render () {
     return (
       <Router>
         <div>
+          <NavBar/>
           <Switch>
             <Route exact path="/" component={todoList}/>
             <Route exact path="/xcuses" component={xCusesList}/>
