@@ -7,10 +7,10 @@ import './App.css'
 // const excuseController = require('./controllers/excuseController');
 // app.use('/xcuses', excuseController)
 
-import todoList from './components/todoList'
+import todoList from './components/todoList.js'
 import todoItem from './components/todoItem.js'
-import xCusesList from './components/xCusesList'
-import xCusesItems from './components/xCusesItems'
+import xCusesList from './components/xCusesList.js'
+import xCusesItems from './components/xCusesItems.js'
 
 class App extends Component {
   render () {
