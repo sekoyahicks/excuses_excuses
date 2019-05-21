@@ -1,8 +1,8 @@
 const mongoose = require('../db/connection.js')
 const Schema = mongoose.Schema
-
 const TodoItem = new Schema ({
-    description: String
+    description: String,
+    // item: ObjectId
 })
 
-module.exports = mongoose.model('TodoITem', TodoItem)
+module.exports = mongoose.model('TodoItem', TodoItem)

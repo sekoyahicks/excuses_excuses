@@ -1,8 +1,21 @@
-
-
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const TodoItemWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+    background-color: lavender;
+
+    h1 {
+      font-size: 4em;
+    }
+
+`
 
 class todoItem extends Component {
   state = {
@@ -20,14 +33,14 @@ class todoItem extends Component {
     axios.patch(`/todo/${this.props.match.params.id}`, this.state.todoItem).then(res => {
           this.setState({todoItem: res.data, isEditFormDisplayed: false})
       })
-}
-
+    }
 
 createXcuse = () => {
-  axios.post('/xcuses', {description: this.state.xcuse})
+  axios.post('/xcuses', {
+    description: this.state.xcuse,
+    item: this.state.todoItem.description
+  })
 }
-
-
   // toggletodoList = () => {
   //   this.setState((state, props) => {
   //     return { isTodoListDisplayed: !state.isTodoListDisplayed };
@@ -76,7 +89,7 @@ createXcuse = () => {
 
   render() {
     return (
-      <div>
+      <TodoItemWrapper>
         <h1>To-Do Task</h1>
         <div>{this.state.todoItem.description}
 
@@ -84,8 +97,10 @@ createXcuse = () => {
           <form>
             <textarea name="description" onChange={this.handleChange} value={this.state.todoItem.description}></textarea>
             </form>
-              <Link to={`/${todoItem._id}`}>{todoItem.description}</Link>
+
+              <Link to={`/`}>
               <button onClick={() => this.updateTodoItem(todoItem._id)}>Update</button>
+              </Link>
 
               <textarea name="xcuse" onChange={this.onXcuseChange}>{this.state.xcuse}</textarea>
               <Link to="/xcuses"><button onClick={this.createXcuse}>xCuse</button></Link>
@@ -124,7 +139,7 @@ createXcuse = () => {
             <button>TodoList</button>
           </form>
         ) : null} */}
-      </div>
+      </TodoItemWrapper>
     );
   }
 }

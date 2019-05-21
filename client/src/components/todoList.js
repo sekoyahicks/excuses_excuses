@@ -1,7 +1,21 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
+const TodoWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+    background-color: lavender;
+
+    h1 {
+      font-size: 4em;
+    }
+
+`
 
 class todoList extends Component {
   state = {
@@ -62,7 +76,7 @@ class todoList extends Component {
   
   render() { 
     return (
-      <div>
+      <TodoWrapper>
         <h1>To-do List</h1>
         {this.state.todoItem.map(todoItem => {
           return (
@@ -99,7 +113,7 @@ class todoList extends Component {
             <button>Add Task</button>
           </form>
         {/* ) : null} */}
-    </div>
+    </TodoWrapper>
     );
   }
 }

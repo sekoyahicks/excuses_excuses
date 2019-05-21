@@ -20,7 +20,6 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={todoList}/>
             <Route exact path="/xcuses" component={xCusesList}/>
-
             <Route path="/:id" component={todoItem}/>
             <Route path="/xcuses/:id" component={xCusesItems}/>
           </Switch>

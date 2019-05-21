@@ -1,7 +1,30 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
+const XcusesWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+    background-color: lavender;
+
+    h1 {
+      font-size: 4em;
+      text-transform: uppercase;
+    }
+    h2 {
+      text-transform: uppercase;
+    }
+    p {
+      font-size: 1.5em;
+    }
+
+
+
+`
 class xCusesList extends Component {
   state = {
     xCusesList: [],
@@ -51,7 +74,7 @@ class xCusesList extends Component {
       });
   };
 
-  deleteTodoItem = xCusesListId => {
+  deleteXCusesList = xCusesListId => {
     axios.delete(`/xcuses/${xCusesListId}`).then(res => {
     const  xCusesListClone = this.state.xCusesList.filter(item => item._id !== xCusesListId)
 
@@ -61,44 +84,26 @@ class xCusesList extends Component {
 
   render() {
     return (
-      <div>
-        test
+      <XcusesWrapper>
         <h1>xCuses</h1>
         {this.state.xCusesList.map(xCusesList => {
           return (
             <div key={xCusesList._id}>
-              <Link to={`/${xCusesList._id}`}>{xCusesList.description}</Link>
-              <button>Xcuse</button>
+              <h2>{xCusesList.item}</h2>
+              <p>{xCusesList.description}</p>
+              <div key={xCusesList._id}>
+              {/* <Link to={`/${xCusesList._id}`}>{xCusesList.description}</Link> */}
+              <button onClick={() => this.deleteXCusesList(xCusesList._id)}>X</button>
+              </div>
+              <h2>Stop making excuses, and go be great!</h2>
             </div>
           );
         })}
-        {/* <button onClick={this.toggleXCusesListForm}>+ New XCusesList</button>
-        {this.state.isXCusesListDisplayed ? ( */}
-          <form onSubmit={this.xCusesList}>
-            <div>
-              <label htmlFor="name">Name</label>
-              <input
-                id="name"
-                type="text"
-                name="name"
-                onChange={this.handleChange}
-                value={this.state.xCusesList.name}
-              />
-            </div>
-            <div>
-              <label htmlFor="description">Description</label>
-              <textarea
-                id="description"
-                type="text"
-                name="description"
-                onChange={this.handleChange}
-                value={this.state.newXCusesList.description}
-              />
-            </div>
-            <button>XCusesList</button>
-          </form>
+        {/* <button onClick={this.toggleXCusesListForm}>+ New XCusesList</button> */}
+        {/* {this.state.isXCusesListDisplayed ? ( */}
+        
          {/* ) : null} */}
-      </div>
+        </XcusesWrapper>
     );
   }
 }

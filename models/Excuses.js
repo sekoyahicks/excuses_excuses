@@ -2,7 +2,8 @@ const mongoose = require('../db/connection.js')
 const Schema = mongoose.Schema
 
 const ExcusesList = new Schema ({
-    description: String
+    description: String,
+    item: String
 })
 
 //We don't need this anymore because we are exporting the ExcusesList directly
