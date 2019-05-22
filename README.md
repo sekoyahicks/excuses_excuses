@@ -10,7 +10,7 @@ https://excuse-excuses.herokuapp.com/
 https://trello.com/b/zsacNVcI/excuses-excuses
 
 ## Wireframes
-<img src="/src/images/IMG_13051.jpg" width=200>
+<img src="/images/IMG_13051.jpg" width=200>
 
 ## Technologies Used:
 ### Ajax
