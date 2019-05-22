@@ -15,6 +15,7 @@ const TodoWrapper = styled.div`
     background-image: url(${images});
     background-size: cover;
     color: white;
+    text-decoration-line: underline;
     text-shadow:
     -1px -1px 0 #000,  
     1px -1px 0 #000,

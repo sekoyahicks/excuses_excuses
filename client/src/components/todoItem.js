@@ -25,7 +25,7 @@ const TodoItemWrapper = styled.div`
     }
 
     .button {
-      font-size: 4em;
+      font-size: 5em;
       color: lightblue;
     }
 

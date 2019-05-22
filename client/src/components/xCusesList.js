@@ -13,7 +13,7 @@ const XcusesWrapper = styled.div`
     height: 100vh;
     background-image: url(${images});
     background-size: cover;
-    color: lightblue;
+    color: red;
     text-shadow:
     -1px -1px 0 #000,  
     1px -1px 0 #000,
@@ -23,16 +23,24 @@ const XcusesWrapper = styled.div`
     h1 {
       font-size: 4em;
       text-transform: uppercase;
+      text-decoration-line: underline;
     }
-    h2 {
+    h3 {
       text-transform: uppercase;
+      text-decoration-line: underline;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 2em;
     }
     p {
       font-size: 1.5em;
     }
-
-
-
+    .x {
+    font-size: 1em;
+    background: transparent;
+    border-radius: 35%;
+    border-width: .2em;
+    outline: .2em;
+    }
 `
 class xCusesList extends Component {
   state = {
@@ -94,7 +102,7 @@ class xCusesList extends Component {
   render() {
     return (
       <XcusesWrapper>
-        <h1>xCuses</h1>
+        <h1>{'{X}'}CUSES</h1>
         {this.state.xCusesList.map(xCusesList => {
           return (
             <div key={xCusesList._id}>
@@ -102,9 +110,9 @@ class xCusesList extends Component {
               <p>{xCusesList.description}</p>
               <div key={xCusesList._id}>
               {/* <Link to={`/${xCusesList._id}`}>{xCusesList.description}</Link> */}
-              <button onClick={() => this.deleteXCusesList(xCusesList._id)}>{'{X}'}</button>
+              <button className='x'onClick={() => this.deleteXCusesList(xCusesList._id)}>{'{X}'}</button>
               </div>
-              <h2>Stop making excuses, and go be great!</h2>
+              <h3>Stop making excuses, and go be great!</h3>
             </div>
           );
         })}

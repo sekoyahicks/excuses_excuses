@@ -9,11 +9,25 @@ const Bars = styled.div`
     /* width: 30px; */
     align-items: center;
     justify-content: space-evenly;
-    background-color: green;
-    color: yellow;
+    font-family: 'Indie Flower', cursive;
+    background-color: white;
+    color: red;
+    font-weight:bold;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
     
     a {
-        color: yellow;
+        font-family: 'Indie Flower', cursive;
+        color: white;
+        font-weight: bold;
+        text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 
     }
 
