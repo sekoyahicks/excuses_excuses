@@ -9,9 +9,12 @@ https://excuse-excuses.herokuapp.com/
 ## Link to the Trello Board
 https://trello.com/b/zsacNVcI/excuses-excuses
 
-## A link to the Wirefames, Mockups, and ERDs (or inline photos / screenshots will work too!)
+## Wireframes
+<img src="/src/images/IMG_13051.jpg" width=200>
 
-## A list of technologies, libraries, and/or frameworks used in the project, such as Node, Express, Mongo, Mongoose and React
-
-What you would like to add in version 2
-## Wireframes or Mockups
+## Technologies Used:
+### Ajax
+### Node
+### Express
+### Mongo
+### React
